@@ -13,9 +13,9 @@ import EventListAttendee from './EventListAttendee';
                             <Item>
                               <Item.Image size="tiny" circular src={event.hostPhotoURL} />
                               <Item.Content>
-                                <Item.Header as="a">{event.title}</Item.Header>
+                                <Item.Header>{event.title}</Item.Header>
                                 <Item.Description>
-                                 <a>{event.hostedBy}</a>
+                                 {event.hostedBy}
                                 </Item.Description>
                               </Item.Content>
                             </Item>
@@ -29,7 +29,7 @@ import EventListAttendee from './EventListAttendee';
                         </Segment>
                         <Segment secondary>
                           <List horizontal>
-                          {event.attendees.map((attend) => (
+                          {event.attendees && event.attendees.map((attend) => (
                           <EventListAttendee key={attend.id} attendee={attend}/>
                           ))}
                           </List>
