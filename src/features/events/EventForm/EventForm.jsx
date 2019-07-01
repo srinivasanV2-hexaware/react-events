@@ -9,10 +9,24 @@ class EventForm extends Component {
         venue:'',
         hosted:''
     }
+    componentDidMount(){
+        if(this.props.selectedEvent!=null){
+            this.setState({
+                ...this.props.selectedEvent
+            })
+        }
+    }
+ 
     handleformSubmit=(evt)=>{
       evt.preventDefault();
-      this.props.createEvent(this.state)
-    //   console.log(this.refs.firstname.value);
+      
+      if(this.state.id)
+{
+    this.props.updateEvent(this.state)
+}    //   console.log(this.refs.firstname.value);
+else{
+    this.props.createEvent(this.state)
+}
    
     
     }
@@ -21,7 +35,7 @@ class EventForm extends Component {
     }
     render() {
         const {cancelFormOpen} = this.props;
-        const {title,date,city,hosted,venue} = this.state;
+        const {title,date,city,hostedBy,venue} = this.state;
         console.log(cancelFormOpen);
         return (
             <div>
@@ -45,7 +59,7 @@ class EventForm extends Component {
                           </Form.Field>
                           <Form.Field>
                             <label>Hosted By</label>
-                            <input autoComplete="off"  name="hosted" value={hosted} onChange={this.handleInputChange} placeholder="Enter the name of person hosting" />
+                            <input autoComplete="off"  name="hosted" value={hostedBy} onChange={this.handleInputChange} placeholder="Enter the name of person hosting" />
                           </Form.Field>
                           <Button positive type="submit">
                             Submit
